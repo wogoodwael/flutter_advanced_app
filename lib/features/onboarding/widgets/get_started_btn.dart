@@ -16,7 +16,7 @@ class GetStartedBtn extends StatelessWidget {
         minimumSize: Size(double.infinity, 52),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
-      
+      //some spaces 
       onPressed: () {
         context.pushNamed(Routes.login);
       },
