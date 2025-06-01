@@ -12,8 +12,8 @@ class DoclogoAndName extends StatelessWidget {
       spacing: 10.w,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset("assets/svgs/logo.svg"),
-        Text("DocDoc", style: TextStyles.font24Black700weight),
+        SvgPicture.asset("assets/svgs/Medinova_logo.svg", width: 50),
+        Text("Medinova", style: TextStyles.font24Black700weight),
       ],
     );
   }

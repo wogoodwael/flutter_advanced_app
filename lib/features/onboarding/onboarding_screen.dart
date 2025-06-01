@@ -18,7 +18,7 @@ class OnboardingScreen extends StatelessWidget {
             child: Column(
               children: [
                 DoclogoAndName(),
-                SizedBox(height: 30.h),
+                SizedBox(height: 40.h),
                 DoctorImageAndText(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
