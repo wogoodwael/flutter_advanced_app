@@ -1,22 +1,19 @@
 import 'package:advanced_app/core/helper/spacing.dart';
 import 'package:advanced_app/core/theme/styles.dart';
 import 'package:advanced_app/core/widgets/app_btn.dart';
-import 'package:advanced_app/core/widgets/app_text_field.dart';
-import 'package:advanced_app/features/auth/login/widgets/dont_have_account_text.dart';
-import 'package:advanced_app/features/auth/login/widgets/terms_and_conditions_text.dart';
-import 'package:custom_form_w/custom_form_w.dart';
+import 'package:advanced_app/features/auth/login/data/models/login_req_body.dart';
+import 'package:advanced_app/features/auth/login/logic/cubit/login_cubit.dart';
+import 'package:advanced_app/features/auth/login/ui/widgets/dont_have_account_text.dart';
+import 'package:advanced_app/features/auth/login/ui/widgets/email_and_password.dart';
+import 'package:advanced_app/features/auth/login/ui/widgets/login_bloc_listener.dart';
+import 'package:advanced_app/features/auth/login/ui/widgets/terms_and_conditions_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,13 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.start,
                 ),
                 verticalSpace(40),
-                AppTextField(headerText: "Email", hintText: "Enter Your Email"),
-                verticalSpace(20),
-                AppTextField(
-                  type: CustomTextFieldType.password,
-                  headerText: "Password",
-                  hintText: "Enter Your Password",
-                ),
+                EmailAndPassword(),
 
                 Align(
                   heightFactor: 3,
@@ -66,16 +57,34 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 verticalSpace(5),
-                AppButton(title: "Sign In "),
+                AppButton(
+                  title: "Sign In ",
+                  onPressed: () {
+                    validateThenDoLogin(context);
+                  },
+                ),
                 verticalSpace(20),
                 TermsAndConditionsText(),
                 verticalSpace(30),
                 Center(child: DontHaveAccountText()),
+                LoginBlocListener(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void validateThenDoLogin(BuildContext context) {
+    if (context.read<LoginCubit>().emailformKey.currentState!.validate()&&context.read<LoginCubit>().passwordformKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLoginStates(
+        LoginRequestBody(
+          email: context.read<LoginCubit>().emailController.text,
+          password: context.read<LoginCubit>().passwordController.text,
+        ),
+      );
+    }
+   
   }
 }
