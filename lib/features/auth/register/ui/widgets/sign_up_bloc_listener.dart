@@ -2,32 +2,31 @@ import 'package:advanced_app/core/helper/extentions.dart';
 import 'package:advanced_app/core/routing/routes.dart';
 import 'package:advanced_app/core/theme/colors.dart';
 import 'package:advanced_app/core/theme/styles.dart';
-import 'package:advanced_app/features/auth/login/logic/cubit/login_cubit.dart';
-import 'package:advanced_app/features/auth/login/logic/cubit/login_state.dart';
+import 'package:advanced_app/features/auth/register/logic/cubit/signup_cubit.dart';
+import 'package:advanced_app/features/auth/register/logic/cubit/signup_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key});
+class SignUpBlocListener extends StatelessWidget {
+  const SignUpBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return     BlocListener<SignupCubit, SignupState>(
       listenWhen:
           (previous, current) =>
-              current is Loading || current is Success || current is Error,
+              current is SignupLoading || current is SignupSuccess || current is SignupError,
       listener: (context, state) {
         state.whenOrNull(
-          loading: () {
+          signupLoading: () {
             Center(
               child: CircularProgressIndicator(color: ColorsManager.primary),
             );
           },
-          success: (data) {
+          signupSuccess: (data) {
             context.pushNamed(Routes.homeScreen);
           },
-          error: (error) {
+          signupError: (error) {
             setupErrorState(context, error);
           },
         );
@@ -55,4 +54,4 @@ class LoginBlocListener extends StatelessWidget {
     );
   }
 
-}
+  }
