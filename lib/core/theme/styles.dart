@@ -31,6 +31,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.grey,
   );
+  static TextStyle openSans12RegularWhite = GoogleFonts.openSans(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: Colors.white,
+  );
   static TextStyle openSans20SemiBold = GoogleFonts.openSans(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.semiBold,
@@ -39,8 +44,17 @@ class TextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.semiBold,
   );
+  static TextStyle openSans18SemiBold = GoogleFonts.openSans(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.semiBold,
+  );
   static TextStyle font13GrayRegular = TextStyle(
     fontSize: 13.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.grey,
+  );
+  static TextStyle font14GrayRegular = TextStyle(
+    fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.grey,
   );
