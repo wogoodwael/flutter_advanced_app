@@ -1,20 +1,13 @@
-import 'package:advanced_app/core/theme/colors.dart';
-import 'package:advanced_app/core/theme/styles.dart';
+
+import 'package:advanced_app/features/home/data/models/specialisation_response_model.dart';
+import 'package:advanced_app/features/home/ui/widgets/doctors_speciality_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorsSpecialityListView extends StatelessWidget {
-  DoctorsSpecialityListView({super.key});
-  final List categories = [
-    "denteeth",
-    "Theripist",
-    "surgeon",
-    "denteeth",
-    "Theripist",
-    "surgeon",
-    "denteeth",
-    "Theripist",
-  ];
+  final List<SpecializationsData?>? specializationsDataList;
+  DoctorsSpecialityListView({super.key,required this.specializationsDataList});
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,30 +15,13 @@ class DoctorsSpecialityListView extends StatelessWidget {
       height: 100.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 8,
+        itemCount: specializationsDataList?.length ?? 0,
         padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsetsDirectional.only(start: index == 0 ? 0 : 24.w),
-            child: Container(
-              margin: EdgeInsets.symmetric(vertical: 20),
-              width: 120.w,
-              decoration: BoxDecoration(
-                color: ColorsManager.primary,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  categories[index],
-                  style: TextStyles.openSans20SemiBold.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          );
+          return DoctorSpecialityListViewItem(specializationsDataList: specializationsDataList, index: index,);
         },
       ),
     );
   }
 }
+
