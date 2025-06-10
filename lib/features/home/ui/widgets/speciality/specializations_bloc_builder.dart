@@ -1,16 +1,17 @@
 import 'package:advanced_app/core/helper/spacing.dart';
 import 'package:advanced_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:advanced_app/features/home/logic/cubit/home_state.dart';
-import 'package:advanced_app/features/home/ui/widgets/all_doctors_list_view.dart';
-import 'package:advanced_app/features/home/ui/widgets/doctor_speciality_list_view.dart';
 import 'package:advanced_app/features/home/ui/widgets/doctors_see_all.dart';
+import 'package:advanced_app/features/home/ui/widgets/doctors/doctors_shimmer_loading.dart';
 import 'package:advanced_app/features/home/ui/widgets/doctors_speciality_see_all.dart';
+import 'package:advanced_app/features/home/ui/widgets/speciality/speciality_list_view.dart';
+import 'package:advanced_app/features/home/ui/widgets/speciality/speciality_shimmer_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SpecilizationsAndDoctor extends StatelessWidget {
-  const SpecilizationsAndDoctor({super.key});
+class SpecilizationsBlocBuilder extends StatelessWidget {
+  const SpecilizationsBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,29 +22,23 @@ class SpecilizationsAndDoctor extends StatelessWidget {
               current is SpecializationsSuccess ||
               current is SpecializationsError,
       builder: (context, state) {
-        return state.when(
+        return state.maybeWhen(
           initial: () => const SizedBox.shrink(),
           loading: () => setUpLoading(),
           success: (specializationsResponseModel) {
-            var specializationsDataList =
-                specializationsResponseModel.specializationDataList;
+            var specializationsDataList = specializationsResponseModel;
             return Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     DoctorsSpecialitySeeAll(),
 
-                    DoctorsSpecialityListView(
+                    SpecialityListView(
                       specializationsDataList: specializationsDataList,
                     ),
                     verticalSpace(10.h),
 
                     DoctorsSeeAll(),
-                    verticalSpace(15.h),
-
-                    AllDoctorsListView(
-                      doctorsList: specializationsDataList?[0]?.doctorsList,
-                    ),
                   ],
                 ),
               ),
@@ -52,13 +47,23 @@ class SpecilizationsAndDoctor extends StatelessWidget {
           error:
               (errorhandler) =>
                   Text(errorhandler.apiErrorModel.message ?? "Error"),
+          orElse: () {
+            return const SizedBox.shrink();
+          },
         );
       },
     );
   }
+
   Widget setUpLoading() {
-    return const Center(
-      child: CircularProgressIndicator(),
+    return Expanded(
+      child: Column(
+        children: [
+          SpecialityShimmerLoading(),
+          verticalSpace(10),
+          DoctorsShimmerLoading(),
+        ],
+      ),
     );
   }
 }
