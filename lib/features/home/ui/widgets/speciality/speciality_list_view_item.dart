@@ -20,43 +20,51 @@ class SpecialityListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: index == 0 ? 0 : 24.w),
-      child:
-          selectedIndex == index
-              ? Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
-                width: 130.w,
-                decoration: BoxDecoration(
-                  color: ColorsManager.secondary,
-
-                  border: Border.all(color: Colors.white, width: 2),
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
+      child: selectedIndex == index
+          ? Container(
+              margin: EdgeInsets.symmetric(vertical: 20),
+              width: 130.w,
+              decoration: BoxDecoration(
+                color: ColorsManager.secondary,
+                border: Border.all(color: Colors.white, width: 2),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w),
                   child: Text(
                     specializationsDataList?[index]?.name ?? "",
                     style: TextStyles.openSans16SemiBold.copyWith(
                       color: Colors.white,
                     ),
-                  ),
-                ),
-              )
-              : Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
-                width: 120.w,
-                decoration: BoxDecoration(
-                  color: ColorsManager.primary,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    specializationsDataList?[index]?.name ?? "",
-                    style: TextStyles.openSans16SemiBold.copyWith(
-                      color: Colors.white,
-                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                 ),
               ),
+            )
+          : Container(
+              margin: EdgeInsets.symmetric(vertical: 20),
+              width: 120.w,
+              decoration: BoxDecoration(
+                color: ColorsManager.primary,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w),
+                  child: Text(
+                    specializationsDataList?[index]?.name ?? "",
+                    style: TextStyles.openSans16SemiBold.copyWith(
+                      color: Colors.white,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ),
+              ),
+            ),
     );
   }
 }

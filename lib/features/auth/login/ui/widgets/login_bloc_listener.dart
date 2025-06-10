@@ -1,4 +1,5 @@
 import 'package:advanced_app/core/helper/extentions.dart';
+import 'package:advanced_app/core/network/api_error_model.dart';
 import 'package:advanced_app/core/routing/routes.dart';
 import 'package:advanced_app/core/theme/colors.dart';
 import 'package:advanced_app/core/theme/styles.dart';
@@ -36,13 +37,13 @@ class LoginBlocListener extends StatelessWidget {
     );
   }
 
-  void setupErrorState(BuildContext context, String error) {
+  void setupErrorState(BuildContext context, ApiErrorModel error) {
     showDialog(
       context: context,
       builder:
           (context) => AlertDialog(
             icon: const Icon(Icons.error, color: Colors.red, size: 32),
-            content: Text(error, style: TextStyles.font13GreenSemiBold),
+            content: Text(error.getAllErrorMessages(), style: TextStyles.font13GreenSemiBold),
             actions: [
               TextButton(
                 onPressed: () {

@@ -46,7 +46,7 @@ class SpecilizationsBlocBuilder extends StatelessWidget {
           },
           error:
               (errorhandler) =>
-                  Text(errorhandler.apiErrorModel.message ?? "Error"),
+                  Text(errorhandler.message??"Error"),
           orElse: () {
             return const SizedBox.shrink();
           },
