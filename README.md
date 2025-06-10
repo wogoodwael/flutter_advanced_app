@@ -1,16 +1,44 @@
-# advanced_app
+# Advanced Flutter App
 
-A new Flutter project.
+A modern Flutter application showcasing best practices and powerful tools for efficient development.
+
+## Key Technologies Used
+
+### Data Management & API Integration
+- **Freezed**: Immutable data classes with union types and pattern matching
+- **json_serializable**: Automated JSON serialization/deserialization
+- **Retrofit**: Type-safe API client with annotation-based approach
+
+### Development Tools
+- **SourceTree**: Visual Git workflow management
+- **Fastlane**: Automated build, testing, and deployment
+- **Flavors**: Environment-specific configurations for iOS and Android
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project demonstrates advanced Flutter development practices and tooling. To get started:
 
-A few resources to get you started if this is your first Flutter project:
+1. Clone the repository
+2. Install dependencies: `flutter pub get`
+3. Run the app: `flutter run`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Development Resources
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Freezed Documentation](https://pub.dev/packages/freezed)
+- [Retrofit Documentation](https://pub.dev/packages/retrofit)
+- [Fastlane Documentation](https://docs.fastlane.tools/)
+
+
+## Screenshots
+
+Here are some screenshots of the application:
+
+| Screenshot 1 | Screenshot 2 |
+|-------------|-------------|
+| ![Screenshot 1](screenshots/first.png) | ![Screenshot 2](screenshots/second.png) |
+| Screenshot 3 | Screenshot 4 |
+| ![Screenshot 3](screenshots/third.png) | ![Screenshot 4](screenshots/fourth.png) |
+| Screenshot 5 | Screenshot 6 |
+| ![Screenshot 5](screenshots/fifth.png) | ![Screenshot 6](screenshots/sixth.png) |
+
+
